@@ -25,7 +25,7 @@ SECRET_KEY = 'c&f&fxkm6a5rzr-905x)-pial#=fhr($-u_6&zw$7^_-ayj*-4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'mugdev.pythonanywhere.com']
 
 
 # Application definition
