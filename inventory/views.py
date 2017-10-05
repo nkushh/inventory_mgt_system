@@ -168,8 +168,11 @@ def update_stock(request):
 @login_required(login_url='login')
 def sales(request):
 	sales = Item_sale.objects.all()
+	items = Item.objects.all()
+
 	context = {
 		'sales' : sales,
+		'items' : items,
 	}
 
 	return render(request, 'inventory/sales-records.html', context)
