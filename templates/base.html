@@ -82,7 +82,7 @@
                 <form class="form" method="POST" action="{% url 'inventory:record_sale' %}">{% csrf_token %}
                   <div class="form-group">
                     <label>Item</label>
-                    <select name="item" class="form-control selectpicker" id="item-search" data-live-search="true">
+                    <select name="item" class="form-control selectpicker" id="item-search" data-live-search="true" required>
                       <option value="" disabled selected>--Pick item--</option>
                       {% for item in items %}
                       <option value="{{ item.pk }}">{{ item.item_name }}</option>
