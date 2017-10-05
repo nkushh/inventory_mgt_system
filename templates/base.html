@@ -1,0 +1,195 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>IMS - {% block title %}{% endblock %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<!--// Stylesheets //-->
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet" media="screen" />
+<link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" media="screen" />
+<link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" media="screen" />
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js' %}"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js' %}"></script>
+<![endif]-->
+</head>
+
+<body>
+<!-- Wrapper Start -->
+<div class="wrapper">
+    <div class="structure-row">
+        <!-- Sidebar Start -->
+        {% include "sidebar.html" %}
+        <!-- Sidebar End -->
+        <!-- Right Section Start -->
+        <div class="right-sec">
+            <!-- Right Section Header Start -->
+            {% include "topbar.html" %}
+            <!-- Right Section Header End -->
+            <!-- Content Section Start -->
+            <div class="content-section">
+                <div class="container-liquid">
+                    
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+            <!-- Content Section End -->
+        </div>
+        <!-- Right Section End -->
+    </div>
+</div>
+<!-- Wrapper End -->
+
+<!-- Add Category Modal -->
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Add Item Category</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form" method="POST" action="{% url 'inventory:register_category' %}">{% csrf_token %}
+                  <div class="form-group">
+            <label>Category</label>
+            <input type="text" name="category_name" class="form-control" placeholder="Enter category name" required>
+          </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save category</button>
+            </div>
+            </form>
+    
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Record Sales Modal -->
+<div id="saleModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">{{ item.item_name }} Sale Record</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form" method="POST" action="{% url 'inventory:record_sale' %}">{% csrf_token %}
+                  <div class="form-group">
+            <label>Quantity</label>
+            <input type="text" name="quantity" class="form-control" placeholder="Enter quantity sold" required>
+          </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save sale</button>
+            </div>
+            </form>
+    
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!--// Javascript //-->
+<script type="text/javascript" src="{% static 'assets/js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/jquery.accordion.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/jquery.custom-scrollbar.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/icheck.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/selectnav.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/functions.js' %}"></script>
+
+<!-- Graphs -->
+<script type="text/javascript" src="{% static 'assets/js/raphael-2.1.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/morris-0.4.1.min.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'assets/js/jqvmap/jquery.vmap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/jqvmap/jquery.vmap.sampledata.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/jqvmap/maps/jquery.vmap.usa.js' %}"></script>
+<script>
+    jQuery(document).ready(function() {
+        jQuery('#usamap').vectorMap({
+            map: 'usa_en',
+            backgroundColor: '#33363f',
+            color: '#ffffff',
+            hoverOpacity: 0.7,
+            selectedColor: '#999999',
+            enableZoom: true,
+            showTooltip: true,
+            values: sample_data,
+            scaleColors: ['#54acc0', '#e9535e'],
+            normalizeFunction: 'polynomial'
+        });
+    });
+</script>
+
+<script>
+    /* data stolen from http://howmanyleft.co.uk/vehicle/jaguar_'e'_type */
+    var sale_data = [
+      {% for sale in sales_graph %}
+      {% for item in items %}
+      {% ifequal item.pk sale.item %}
+      {"item": "{{ item.item_name }}", "amount": {{ sale.total_amount}}},
+      {% endifequal %}
+      {% endfor %}
+      {% endfor %}
+    ];
+    Morris.Bar({
+      element: 'salesBarGraph',
+      data: sale_data,
+      xkey: 'item',
+      ykeys: ['amount'],
+      labels: ['Amount'],
+      xLabelAngle: 60,
+      barColors: ['#4ac18e']
+      
+    });
+</script>
+
+<script>
+    /* data stolen from http://howmanyleft.co.uk/vehicle/jaguar_'e'_type */
+    var sale_data = [
+      {% for sale in sales_graph %}
+      {% for item in items %}
+      {% ifequal item.pk sale.item %}
+      {"item": "{{ item.item_name }}", "amount": {{ sale.total_amount}}},
+      {% endifequal %}
+      {% endfor %}
+      {% endfor %}
+    ];
+    Morris.Donut({
+      element: 'profitLossGraph',
+      data: [
+        {label: "Sales", value: {{ sales.total_sales }} },
+        {label: "Expenses", value: {{ expenses.total_expenses }} }
+      ],
+      labels: ['item'],
+      resize: true,
+      colors: ['#4ac18e', '#FF0000']
+      
+    });
+</script>
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-42761673-1', 'extracoding.com');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>
+
+<!-- Localized -->

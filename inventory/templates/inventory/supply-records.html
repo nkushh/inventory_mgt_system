@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}Supply Records{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-12">
+			{% if messages %}
+			{% for message in messages %}
+			<div {% ifequal message.tags 'error' %} class="alert alert-danger" {% else %} class="alert alert-{{ message.tags }}" {% endifequal %}>{{ message }}</div>
+			{% endfor %}
+			{% endif %}
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<a href="{% url 'inventory:add_supply_record' %}" class="btn btn-primary pull-right">Record Supply</a>
+					<h3>All Records</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-bordered table-responsive">
+						<thead>
+							<th>Supply #</th>
+							<th>Supplier</th>
+							<th>Item</th>
+							<th>Quantity</th>
+							<th>Amount</th>
+							<th>Supplied on</th>
+							<th>Pay Status</th>
+						</thead>
+						<tbody>
+							{% for record in records %}
+							<tr>
+								<td><a href="">{{ record.pk }}</a></td>
+								<td>{{ record.supplier }}</td>
+								<td>{{ record.items_supplied }}</td>
+								<td>{{ record.quantity | intcomma }}</td>
+								<td>Ksh.{{ record.amount | intcomma }}</td>
+								<td>{{ record.date_supplied }}</td>
+								<td>
+									{% ifequal record.pay_status 0 %} 
+									<font color="red">Pending</font>
+									{% else %}
+									<font color="green">Paid</font>
+									{% endifequal %}
+								</td>
+							</tr>
+							{% empty %}
+							<tr>
+								<td colspan="4"><h3>No supply details recorded yet</h3></td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

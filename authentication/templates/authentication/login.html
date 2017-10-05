@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>IMS - Login</title>
+<!--// Stylesheets //-->
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet" media="screen" />
+<link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" media="screen" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<script type="text/javascript" src="{% static 'assets/js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/icheck.min.js' %}"></script>
+</head>
+
+<body>
+<!-- Wrapper Start -->
+<div class="loginwrapper">
+	<span class="circle"></span>
+	<div class="loginone">
+    	<header>
+        	<a href="dashboard1.html"><img src="{% static 'assets/images/logo.png' %}" alt="" /></a>
+            <p>Enter your credentials to login to your account</p>
+        </header>
+        <form method="POST" action="{% url 'login' %}">{% csrf_token %}
+        	<div class="username">
+        		<input type="text" class="form-control" name="username" placeholder="Enter your username" />
+                <i class="glyphicon glyphicon-user"></i>
+            </div>
+            <div class="password">
+            	<input type="password" class="form-control" name="password" placeholder="Enter your password" />
+                <i class="glyphicon glyphicon-lock"></i>
+            </div>
+            <div class="custom-radio-checkbox">
+                <input tabindex="1" type="checkbox" class="bluecheckradios">
+                <label>Remember me</label>
+            </div>
+			<script>
+				$(document).ready(function(){
+				  $('.bluecheckradios').iCheck({
+					checkboxClass: 'icheckbox_flat-blue',
+					radioClass: 'iradio_flat-blue',
+					increaseArea: '20%' // optional
+				  });
+				});  	
+			</script>
+            <input type="submit" class="btn btn-primary style2" value="Sign In" />
+        </form>
+        <footer>
+        	<a href="#" class="forgot pull-left">I forgot my password</a>
+            <!-- <a href="#" class="register pull-right">Create account</a> -->
+            <div class="clear"></div>
+        </footer>
+    </div>
+</div>
+<!-- Wrapper End -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js' %}','ga');
+
+  ga('create', 'UA-42761673-1', 'extracoding.com');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>
+
+<!-- Localized -->

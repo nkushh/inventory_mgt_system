@@ -1,0 +1,263 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="stat-box colorone">
+            <span class="glyphicon glyphicon-user"></span>
+            <div class="stat-box-text">
+                <h4>Accounts</h4>
+                <h1>{% if accounts > 0 %}{{ accounts }}{% else %}0{% endif %}</h1>
+            </div> 
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-box colortwo">
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            <div class="stat-box-text">
+                <h4>{% now "F" %} Sales</h4>
+                <h1>Ksh.{{ current_month_sales.current_month|intcomma }}</h1>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-box colorfour">
+            <span class="glyphicon glyphicon-import"></span>
+            <div class="stat-box-text">
+                <h4>Suppliers</h4>
+                <h1>{% if suppliers > 0 %}{{ suppliers }}{% else %}0{% endif %}</h1>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="col-md-4">
+        <div class="stat-box colorthree">
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            <div class="stat-box-text">
+                <h4>Pages</h4>
+                <h1>125</h1>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="stat-box colorfive">
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            <div class="stat-box-text">
+                <h4>Downloads</h4>
+                <h1>4005</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-box colorsix">
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            <div class="stat-box-text">
+                <h4>Comments</h4>
+                <h1>56</h1>
+            </div>
+        </div>
+    </div> -->
+    <div class="col-md-6">
+        <div class="sec-box">
+            <header>
+                <h2 class="heading">Sales By Item</h2>
+            </header>
+            <div class="contents">
+                <div class="charts-box boxpadding">
+                    
+                    <div id="salesBarGraph" class="chartdark"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="sec-box">
+            <header>
+                <h2 class="heading">Profit & Loss</h2>
+            </header>
+            <div class="contents boxpadding">
+                <div class="charts-box">
+                    <div id="profitLossGraph"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <!-- <div class="col-md-6">
+        <div class="sec-box">
+            <a href="#" class="closethis">Close</a>
+            <header>
+                <h2 class="heading">Top Users</h2>
+            </header>
+            <div class="contents boxpadding">
+                <a href="#" class="togglethis">Toggle</a>
+                <div class="users-section scrolable scroller">
+                    <ul>
+                        <li>
+                            <figure>
+                                <a href="#"><img src="{% static 'assets/images/avatar1.jpg' %}" alt="Adminise" /></a>
+                            </figure>
+                            <div class="welcome">
+                                <p>Welcome</p>
+                                <h5><a href="#">Edmund E. Lindley</a></h5>
+                            </div>
+                        </li>
+                        <li>
+                            <figure>
+                                <a href="#"><img src="{% static 'assets/images/avatar5.jpg' %}" alt="Adminise" /></a>
+                            </figure>
+                            <div class="welcome">
+                                <p>Welcome</p>
+                                <h5><a href="#">Robert S. Lara</a></h5>
+                            </div>
+                        </li>
+                        <li>
+                            <figure>
+                                <a href="#"><img src="{% static 'assets/images/avatar6.jpg' %}" alt="Adminise" /></a>
+                            </figure>
+                            <div class="welcome">
+                                <p>Welcome</p>
+                                <h5><a href="#">Stephen N. Arellano</a></h5>
+                            </div>
+                        </li>
+                        <li>
+                            <figure>
+                                <a href="#"><img src="{% static 'assets/images/avatar7.jpg' %}" alt="Adminise" /></a>
+                            </figure>
+                            <div class="welcome">
+                                <p>Welcome</p>
+                                <h5><a href="#">Randall A. Smoot</a></h5>
+                            </div>
+                        </li>
+                        <li>
+                            <figure>
+                                <a href="#"><img src="{% static 'assets/images/avatar8.jpg' %}" alt="Adminise" /></a>
+                            </figure>
+                            <div class="welcome">
+                                <p>Welcome</p>
+                                <h5><a href="#">Olin C. Phillips</a></h5>
+                            </div>
+                        </li>
+                        <li>
+                            <figure>
+                                <a href="#"><img src="{% static 'assets/images/avatar9.jpg' %}" alt="Adminise" /></a>
+                            </figure>
+                            <div class="welcome">
+                                <p>Welcome</p>
+                                <h5><a href="#">David R. Webb</a></h5>
+                            </div>
+                        </li>
+                        <li>
+                            <figure>
+                                <a href="#"><img src="{% static 'assets/images/avatar1.jpg' %}" alt="Adminise" /></a>
+                            </figure>
+                            <div class="welcome">
+                                <p>Welcome</p>
+                                <h5><a href="#">Vincent P. Stjohn</a></h5>
+                            </div>
+                        </li>
+                        <li>
+                            <figure>
+                                <a href="#"><img src="{% static 'assets/images/avatar5.jpg' %}" alt="Adminise" /></a>
+                            </figure>
+                            <div class="welcome">
+                                <p>Welcome</p>
+                                <h5><a href="#">David J. Kitchens</a></h5>
+                            </div>
+                        </li>
+                        <li>
+                            <figure>
+                                <a href="#"><img src="{% static 'assets/images/avatar6.jpg' %}" alt="Adminise" /></a>
+                            </figure>
+                            <div class="welcome">
+                                <p>Welcome</p>
+                                <h5><a href="#">Stephen N. Arellano</a></h5>
+                            </div>
+                        </li>
+                        <li>
+                            <figure>
+                                <a href="#"><img src="{% static 'assets/images/avatar7.jpg' %}" alt="Adminise" /></a>
+                            </figure>
+                            <div class="welcome">
+                                <p>Welcome</p>
+                                <h5><a href="#">David J. Dill</a></h5>
+                            </div>
+                        </li>
+                        <li>
+                            <figure>
+                                <a href="#"><img src="{% static 'assets/images/avatar8.jpg' %}" alt="Adminise" /></a>
+                            </figure>
+                            <div class="welcome">
+                                <p>Welcome</p>
+                                <h5><a href="#">Ronald B. Albert</a></h5>
+                            </div>
+                        </li>
+                        <li>
+                            <figure>
+                                <a href="#"><img src="{% static 'assets/images/avatar9.jpg' %}" alt="Adminise" /></a>
+                            </figure>
+                            <div class="welcome">
+                                <p>Welcome</p>
+                                <h5><a href="#">James D. Baker</a></h5>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="tabs-section">
+            <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+                <li><a href="#profile" data-toggle="tab">Profile</a></li>
+                <li><a href="#messages" data-toggle="tab">Messages</a></li>
+            </ul>
+            
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <section class="boxpadding">
+                        <p>
+                        <strong>Rhoncus duis enim in purus? Ac augue mid est mus augue lundium purus, turpis? Ut quis lundium pid, ridiculus ac aliquam dolor, scelerisque aliquet, sit porta cras ultricies ridiculus tempor vel sit, scelerisque! Rhoncus urna. Integer nec porttitor urna turpis, pellentesque nascetur, dictumst nunc? Enim!</strong>
+                        </p>
+                        <p>
+                        Placerat vel ac amet porta, ac. Quis est ut ac penatibus. Augue in scelerisque dictumst? Turpis dapibus porta est? Tristique, proin, cursus nec! Tincidunt, natoque tristique velit mus nisi etiam elementum placerat, arcu sed sit, in vel? Turpis scelerisque scelerisque et nisi egestas massa? Sed, auctor integer amet pulvinar, lectus pulvinar, quis mattis sit ut et diam amet platea, enim ac platea augue sagittis parturient montes porttitor, in cursus a aenean? Non, aenean adipiscing turpis.
+                        </p>
+                        <p>
+Magna dictumst massa? Mauris phasellus et mus, adipiscing augue ac nisi, turpis integer sed? Pulvinar platea sagittis adipiscing diam arcu platea, duis pulvinar proin pid ac phasellus vel magna, risus vut enim scelerisque? Rhoncus lundium? Proin nunc integer cum et rhoncus, risus natoque et. Quis vel sed? Rhoncus nec. Ac phasellus. Mattis quis, tincidunt aliquet? 
+                        </p>
+                    </section>
+                </div>
+                <div class="tab-pane" id="profile">
+                    <section class="boxpadding">
+                        <p>
+                        Placerat vel ac amet porta, ac. Quis est ut ac penatibus. Augue in scelerisque dictumst? Turpis dapibus porta est? Tristique, proin, cursus nec! Tincidunt, natoque tristique velit mus nisi etiam elementum placerat, arcu sed sit, in vel? Turpis scelerisque scelerisque et nisi egestas massa? Sed, auctor integer amet pulvinar, lectus pulvinar, quis mattis sit ut et diam amet platea, enim ac platea augue sagittis parturient montes porttitor, in cursus a aenean? Non, aenean adipiscing turpis.
+                        </p>
+                        <p>
+Magna dictumst massa? Mauris phasellus et mus, adipiscing augue ac nisi, turpis integer sed? Pulvinar platea sagittis adipiscing diam arcu platea, duis pulvinar proin pid ac phasellus vel magna, risus vut enim scelerisque? Rhoncus lundium? Proin nunc integer cum et rhoncus, risus natoque et. Quis vel sed? Rhoncus nec. Ac phasellus. Mattis quis, tincidunt aliquet? 
+                        </p>
+                        <p>
+                        <strong>Rhoncus duis enim in purus? Ac augue mid est mus augue lundium purus, turpis? Ut quis lundium pid, ridiculus ac aliquam dolor, scelerisque aliquet, sit porta cras ultricies ridiculus tempor vel sit, scelerisque! Rhoncus urna. Integer nec porttitor urna turpis, pellentesque nascetur, dictumst nunc? Enim!</strong>
+                        </p>
+                    </section>
+                </div>
+                <div class="tab-pane" id="messages">
+                    <section class="boxpadding">
+                        <p>
+                        <strong>Rhoncus duis enim in purus? Ac augue mid est mus augue lundium purus, turpis? Ut quis lundium pid, ridiculus ac aliquam dolor, scelerisque aliquet, sit porta cras ultricies ridiculus tempor vel sit, scelerisque! Rhoncus urna. Integer nec porttitor urna turpis, pellentesque nascetur, dictumst nunc? Enim!</strong>
+                        </p>
+                        <p>
+Magna dictumst massa? Mauris phasellus et mus, adipiscing augue ac nisi, turpis integer sed? Pulvinar platea sagittis adipiscing diam arcu platea, duis pulvinar proin pid ac phasellus vel magna, risus vut enim scelerisque? Rhoncus lundium? Proin nunc integer cum et rhoncus, risus natoque et. Quis vel sed? Rhoncus nec. Ac phasellus. Mattis quis, tincidunt aliquet? Elementum turpis porttitor dignissim, nisi elementum, tincidunt risus, amet lectus nisi nisi facilisis, amet lacus integer porttitor pulvinar diam eu velit enim aliquam scelerisque lacus sit phasellus tincidunt augue eros ac phasellus scelerisque a, mauris. Quis et dapibus tortor vel scelerisque! Cum ultrices nisi, adipiscing velit diam purus! Proin scelerisque quis ac purus et? Ridiculus, vel! Rhoncus etiam, aliquet scelerisque nisi lundium dolor est. Ridiculus, vel! Rhoncus etiam, aliquet scelerisque nisi lundium dolor est.
+                        </p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>
+{% endblock %}

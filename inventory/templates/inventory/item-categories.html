@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Item Categories{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-12">
+			{% if messages %}
+			{% for message in messages %}
+			<div {% ifequal message.tags 'error' %} class="alert alert-danger" {% else %} class="alert alert-{{ message.tags }}" {% endifequal %}>{{ message }}</div>
+			{% endfor %}
+			{% endif %}
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<a data-toggle="modal" href="#myModal" class="btn btn-primary pull-right">Add Category</a>
+					<h3>All Accounts</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-bordered table-responsive">
+						<thead>
+							<th>Category</th>
+							<th>Created on</th>
+						</thead>
+						<tbody>
+							{% for category in categories %}
+							<tr>
+								<td><a href="{% url 'inventory:category_detail' category.pk %}">{{ category.category_name }}</a></td>
+								<td>{{ category.created_on }}</td>
+							</tr>
+							{% empty %}
+							<tr>
+								<td colspan="4"><h3>No categories registered yet</h3></td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

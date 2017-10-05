@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Add Supply Record{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3>Add supply record</h3>
+				</div>
+				<div class="panel-body">
+					<div class="col-md-offset-3 col-md-6">
+						<form class="form form-horizontal" method="POST" action="{% url 'inventory:record_supply' %}">{% csrf_token%}
+							<div class="form-group">
+								<label>Supplier</label>
+								<select name="supplier" class="form-control">
+									<option selected disabled>--Select supplier--</option>
+									{% for supplier in suppliers %}
+									<option value="{{ supplier.pk }}">{{ supplier.supplier_name }}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Item name</label>
+								<input type="text" name="items_supplied" class="form-control" placeholder="Enter item name" required>
+							</div>
+							<div class="form-group">
+								<label>Item brand</label>
+								<input type="text" name="item_brand" class="form-control" placeholder="Enter item brand" required>
+							</div>
+							<div class="form-group">
+								<label>Quantity</label>
+								<input type="text" name="quantity" class="form-control" placeholder="Enter item quantity">
+							</div>
+							<div class="form-group">
+								<label>Amount Due</label>
+								<input type="text" name="amount" class="form-control" placeholder="Enter total amount due">
+							</div>
+							<div class="buttons">
+								<button type="reset" class="btn btn-danger">Cancel</button>
+								<button type="submit" class="btn btn-primary">Save record</button>
+							</div>
+							
+						</form>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

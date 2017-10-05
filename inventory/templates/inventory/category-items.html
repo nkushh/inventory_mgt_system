@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Category Items{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-12">
+			{% if messages %}
+			{% for message in messages %}
+			<div {% ifequal message.tags 'error' %} class="alert alert-danger" {% else %} class="alert alert-{{ message.tags }}" {% endifequal %}>{{ message }}</div>
+			{% endfor %}
+			{% endif %}
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<a href="{% url 'inventory:new_item' %}" class="btn btn-primary pull-right">Add item</a>
+					<h3>{{ category.category_name }} Items</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-bordered table-responsive">
+						<thead>
+							<th>Name</th>
+							<th>Brand</th>
+							<th>Stock</th>
+							<th>Price</th>
+							<th>Added on</th>
+							<th>Action</th>
+						</thead>
+						<tbody>
+							{% for item in category.item_set.all %}
+							<tr>
+								<td><a href="">{{ item.item_name }}</a></td>
+								<td>{{ item.brand }}</td>
+								<td>{{ item.quantity }}</td>
+								<td>{{ item.price }}</td>
+								<td>{{ item.created_on }}</td>
+								<td>
+									<a href="{% url 'inventory:get_item' item.pk %}"><span class="glyphicon glyphicon-export"></span> sell</a> | 
+									<a href="{% url 'inventory:add_stock' item.pk %}"><span class="glyphicon glyphicon-download"></span> stock</a>
+								</td>
+							</tr>
+							{% empty %}
+							<tr>
+								<td colspan="4"><h3>No {{ category.category_name }} items registered yet</h3></td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

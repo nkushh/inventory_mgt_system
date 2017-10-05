@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Suppliers{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-12">
+			{% if messages %}
+			{% for message in messages %}
+			<div {% ifequal message.tags 'error' %} class="alert alert-danger" {% else %} class="alert alert-{{ message.tags }}" {% endifequal %}>{{ message }}</div>
+			{% endfor %}
+			{% endif %}
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<a href="{% url 'inventory:new_supplier' %}" class="btn btn-primary pull-right">Add supplier</a>
+					<h3>All Suppliers</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table">
+						<thead>
+							<th>Supplier</th>
+							<th>Contact</th>
+							<th>Added on</th>
+						</thead>
+						<tbody>
+							{% for supplier in suppliers %}
+							<tr>
+								<td><a href="">{{ supplier.supplier_name }}</a></td>
+								<td>{{ supplier.contact }}</td>
+								<td>{{ supplier.added_on }}</td>
+							</tr>
+							{% empty %}
+							<tr>
+								<td colspan="4"><h3>No suppliers registered yet</h3></td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

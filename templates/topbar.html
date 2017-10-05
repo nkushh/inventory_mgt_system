@@ -1,0 +1,136 @@
+{% load static %}
+<header>
+    <!-- User Section Start -->
+    <div class="user">
+        <figure>
+            <a href="#"><img src="{% static 'assets/images/avatar1.jpg' %}" alt="Adminise" /></a>
+        </figure>
+        <div class="welcome">
+            <p>Welcome</p>
+            <h5><a href="#">{{ user.username }}</a></h5>
+        </div>
+    </div>
+    <!-- User Section End -->
+    <!-- Search Section Start -->
+    <div class="search-box">
+        <input type="text" placeholder="Search Anything" />
+        <input type="submit" value="go" />
+    </div>
+    <!-- Search Section End -->
+    <!-- Header Top Navigation Start -->
+    <nav class="topnav">
+        <ul id="nav1">
+            <li class="tasks">
+                <a href="#"><i class="glyphicon glyphicon-check"></i>Tasks<span>(04)</span></a>
+                <div class="popdown">
+                    <div class="taskslist">
+                        <ul>
+                            <li>
+                                <h6><a href="#">Vel lundium natoque</a><span class="pull-right">25%</span></h6>
+                                <div class="progress">
+                                    <div style="width: 15%" class="progress-bar progress-bar-success">
+                                        <span class="sr-only">35% Complete (success)</span>
+                                    </div>
+                                    <div style="width: 5%" class="progress-bar progress-bar-warning">
+                                        <span class="sr-only">20% Complete (warning)</span>
+                                    </div>
+                                    <div style="width: 5%" class="progress-bar progress-bar-danger">
+                                        <span class="sr-only">10% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <h6><a href="#">Vel lundium natoque</a><span class="pull-right">75%</span></h6>
+                                <div class="progress">
+                                    <div style="width: 30%" class="progress-bar progress-bar-success">
+                                        <span class="sr-only">35% Complete (success)</span>
+                                    </div>
+                                    <div style="width: 30%" class="progress-bar progress-bar-warning">
+                                        <span class="sr-only">20% Complete (warning)</span>
+                                    </div>
+                                    <div style="width: 15%" class="progress-bar progress-bar-danger">
+                                        <span class="sr-only">10% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <h6><a href="#">Vel lundium natoque</a><span class="pull-right">52%</span></h6>
+                                <div class="progress">
+                                    <div style="width: 30%" class="progress-bar progress-bar-success">
+                                        <span class="sr-only">35% Complete (success)</span>
+                                    </div>
+                                    <div style="width: 15%" class="progress-bar progress-bar-warning">
+                                        <span class="sr-only">20% Complete (warning)</span>
+                                    </div>
+                                    <div style="width: 7%" class="progress-bar progress-bar-danger">
+                                        <span class="sr-only">10% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <h6><a href="#">Vel lundium natoque</a><span class="pull-right">90%</span></h6>
+                                <div class="progress">
+                                    <div style="width: 30%" class="progress-bar progress-bar-success">
+                                        <span class="sr-only">35% Complete (success)</span>
+                                    </div>
+                                    <div style="width: 30%" class="progress-bar progress-bar-warning">
+                                        <span class="sr-only">20% Complete (warning)</span>
+                                    </div>
+                                    <div style="width: 30%" class="progress-bar progress-bar-danger">
+                                        <span class="sr-only">10% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="#" class="viewall">View All Tasks</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </li>
+            <li class="notifi">
+                <a href="#"><i class="glyphicon glyphicon-bell"></i>Notifications</a>
+                <div class="popdown">
+                    <div class="notificationlist">
+                        <ul>
+                            <li>
+                                <h6><a href="#">Vel lundium natoque</a></h6>
+                                <p>In parturient! Vel lundium natoque</p>
+                                <span><i class="glyphicon glyphicon-time"></i>2hrs ago</span>
+                            </li>
+                            <li>
+                                <h6><a href="#">Vel lundium natoque</a></h6>
+                                <p>In parturient! Vel lundium natoque</p>
+                                <span><i class="glyphicon glyphicon-time"></i>2hrs ago</span>
+                            </li>
+                            <li>
+                                <h6><a href="#">Vel lundium natoque</a></h6>
+                                <p>In parturient! Vel lundium natoque</p>
+                                <span><i class="glyphicon glyphicon-time"></i>2hrs ago</span>
+                            </li>
+                            <li>
+                                <h6><a href="#">Vel lundium natoque</a></h6>
+                                <p>In parturient! Vel lundium natoque</p>
+                                <span><i class="glyphicon glyphicon-time"></i>2hrs ago</span>
+                            </li>
+                        </ul>
+                        <a href="#" class="viewall">View All Notifications</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </li>
+            <li class="settings">
+                <a href="#"><i class="glyphicon glyphicon-wrench"></i>Settings</a>
+                <div class="popdown popdown-right settings">
+                    <nav>
+                        <a href="#"><i class="glyphicon glyphicon-user"></i>Your Profile</a>
+                        <a href="#"><i class="glyphicon glyphicon-pencil"></i>Edit Account</a>
+                        <a href="#"><i class="glyphicon glyphicon-question-sign"></i>Get Help</a>
+                        <a href="{% url 'logout' %}"><i class="glyphicon glyphicon-log-out"></i>Log out</a>
+                    </nav>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <!-- Header Top Navigation End -->
+    <div class="clearfix"></div>
+</header>

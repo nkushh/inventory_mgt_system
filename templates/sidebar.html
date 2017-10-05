@@ -1,0 +1,57 @@
+{% load static %}
+<aside class="sidebar">
+    <div class="sidebar-in">
+        <!-- Sidebar Header Start -->
+        <header>
+            <!-- Logo Start -->
+            <div class="logo">
+                <a href="dashboard1.html"><img src="{% static 'assets/images/logo.png' %}" alt="Adminise" /></a>
+            </div>
+            <!-- Logo End -->
+            <!-- Toggle Button Start -->
+            <a href="#" class="togglemenu">&nbsp;</a>
+            <!-- Toggle Button End -->
+            <div class="clearfix"></div>
+        </header>
+        <!-- Sidebar Header End -->
+        <!-- Sidebar Navigation Start -->
+        <nav class="navigation">
+            <ul class="navi-acc" id="nav2">
+                <li>
+                <a href="{% url 'inventory:dashboard' %}" class="dashboard">Dashboard</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'inventory:item_categories' %}" class="layouts">Items</a>
+                </li>
+
+                <li>
+                <a href="#ui-elements" class="ui-elements">Sales</a>
+                <ul>
+                    <li><a href="tiles.html">Add Sale</a></li>
+                    <li><a href="{% url 'inventory:sales' %}">Sales list</a></li>
+                </ul>
+            </li>
+                <li>
+                    <a href="{% url 'inventory:suppliers' %}" class="pages">Suppliers<!-- <span class="label label-custom1">05</span> --></a>
+                </li>
+
+                <li>
+                <a href="#" class="charts">Supply Records</a>
+                <ul>
+                    <li><a href="{% url 'inventory:add_supply_record' %}">Add record</a></li>
+                    <li><a href="{% url 'inventory:supply_records' %}">Supply list</a></li>
+                </ul>
+
+                <li>
+                    <a href="{% url 'authentication:accounts' %}" class="loginoptions">Accounts</a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </nav>
+        <!-- Sidebar Navigation End -->
+        <!-- Shadow Start -->
+        <span class="shadows"></span>
+        <!-- Shadow End -->
+    </div>
+</aside>

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}Sales Records{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-12">
+			{% if messages %}
+			{% for message in messages %}
+			<div {% ifequal message.tags 'error' %} class="alert alert-danger" {% else %} class="alert alert-{{ message.tags }}" {% endifequal %}>{{ message }}</div>
+			{% endfor %}
+			{% endif %}
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<a data-toggle="modal" href="#saleModal" class="btn btn-primary pull-right">Record Sale</a>
+					<h3>All Sales</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-bordered table-responsive">
+						<thead>
+							<th>Sale #</th>
+							<th>Item</th>
+							<th>Quantity</th>
+							<th>Amount</th>
+							<th>Sold on</th>
+						</thead>
+						<tbody>
+							{% for sale in sales %}
+							<tr>
+								<td><a href="">{{ sale.pk }}</a></td>
+								<td>{{ sale.item }}</td>
+								<td>{{ sale.quantity | intcomma }}</td>
+								<td>Ksh.{{ sale.amount | intcomma }}</td>
+								<td>{{ sale.date_sold }}</td>
+							</tr>
+							{% empty %}
+							<tr>
+								<td colspan="4"><h3>No sales recorded yet</h3></td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

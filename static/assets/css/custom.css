@@ -1,0 +1,21 @@
+body{
+	font-size: 16px;
+}
+
+
+a{
+	color: #06c;
+}
+
+form .form-group{
+	margin-top: 3%;
+}
+
+.form-group input{
+	height: 40px;
+}
+
+form .buttons{
+	margin-top: 3%;
+	margin-left: 30%;
+}
